@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { GreenApiError, getStateInstance } from '../api/greenApi'
 import type { Credentials } from '../types'
 import { getErrorMessage } from '../utils/error'
+import { LogoIcon } from './icons'
 
 const DEFAULT_API_URL = 'https://api.green-api.com'
 
@@ -54,17 +55,12 @@ export function LoginForm({ onLogin }: LoginFormProps) {
   return (
     <div className="login">
       <form className="login__card" onSubmit={handleSubmit} noValidate>
-        <div className="login__logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="56" height="56">
-            <path
-              fill="currentColor"
-              d="M9.8 15.3 9.6 19c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.8.4 1.3.2 1.5-.7l2.7-12.7c.3-1.1-.4-1.6-1.2-1.3L3.7 10.7c-1.1.4-1.1 1.1-.2 1.4l4.1 1.3 9.6-6c.5-.3.9-.1.5.2"
-            />
-          </svg>
+        <div className="login__logo">
+          <LogoIcon size={72} />
         </div>
-        <h1 className="login__title">Вход в чат</h1>
+        <h1 className="login__title">Войдите через GREEN-API</h1>
         <p className="login__hint">
-          Введите данные инстанса Telegram из{' '}
+          Укажите данные инстанса из{' '}
           <a className="login__link" href="https://console.green-api.com" target="_blank" rel="noreferrer">
             консоли GREEN-API
           </a>
@@ -102,7 +98,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
           </div>
         )}
         <button type="submit" className="login__button" disabled={loading}>
-          {loading ? 'Проверка…' : 'Войти'}
+          {loading ? 'Проверяем…' : 'Войти'}
         </button>
       </form>
     </div>

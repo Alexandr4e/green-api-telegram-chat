@@ -55,7 +55,7 @@ export function chatReducer(state: ChatState, action: ChatAction): ChatState {
       return { ...state, messages: { ...state.messages, [chatId]: patched } }
     }
     case 'renameChat': {
-      // Telegram может вернуть реальный chatId (например, "10000000") вместо "номер@c.us".
+      // Мессенджер может вернуть реальный chatId (например, "10000000") вместо "номер@c.us".
       // Переносим чат и его сообщения на реальный chatId.
       const { from, to } = action
       if (from === to) return state

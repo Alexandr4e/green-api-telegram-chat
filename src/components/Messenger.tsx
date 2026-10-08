@@ -8,6 +8,7 @@ import { parseTextNotification } from '../utils/notifications'
 import { formatChatId, phoneToChatId } from '../utils/phone'
 import { loadJson, removeItem, saveJson } from '../utils/storage'
 import { ChatWindow } from './ChatWindow'
+import { NavRail } from './NavRail'
 import { Sidebar } from './Sidebar'
 
 interface MessengerProps {
@@ -38,7 +39,7 @@ export function Messenger({ creds, onLogout }: MessengerProps) {
     const current = stateRef.current
 
     if (!current.chats.some((c) => c.chatId === message.chatId)) {
-      // Telegram может прислать реальный chatId вместо "номер@c.us", по которому был создан чат.
+      // Мессенджер может прислать реальный chatId вместо "номер@c.us", по которому был создан чат.
       // Находим исходный чат по idMessage отправленного сообщения или по номеру отправителя.
       const byMessage = Object.keys(current.messages).find((chatId) =>
         current.messages[chatId].some((m) => m.id === message.id),
@@ -89,6 +90,7 @@ export function Messenger({ creds, onLogout }: MessengerProps) {
 
   return (
     <div className={`messenger${activeChat ? ' messenger--chat-open' : ''}`}>
+      <NavRail onLogout={handleLogout} />
       <Sidebar
         chats={state.chats}
         messages={state.messages}

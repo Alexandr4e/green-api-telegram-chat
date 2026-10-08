@@ -1,8 +1,14 @@
-# GREEN-API Telegram Chat
+# GREEN-API Chat
 
-Простой веб-чат для отправки и получения текстовых сообщений в **Telegram** через сервис
-[GREEN-API](https://green-api.com/telegram/). Интерфейс сделан по образцу
-[Telegram Web](https://web.telegram.org/).
+Простой веб-чат для отправки и получения текстовых сообщений через сервис
+[GREEN-API](https://green-api.com/). Интерфейс выполнен по прототипу веб-версии мессенджера
+[MAX](https://web.max.ru/).
+
+> **Выбор мессенджера.** Задание допускает реализацию для WhatsApp или Telegram, если нет
+> возможности выполнить его для MAX. Приложение реализовано для инстанса **Telegram**.
+> Методы GREEN-API (`sendMessage`, `receiveNotification`, `deleteNotification`) одинаковы
+> для всех мессенджеров, поэтому код не привязан к Telegram: для работы с инстансом MAX
+> достаточно указать его `idInstance`, `apiTokenInstance` и `apiUrl`.
 
 - **Демо:** https://Alexandr4e.github.io/green-api-telegram-chat/
 - **Демо-режим без учётных данных** (фиктивная переписка для просмотра интерфейса):
@@ -18,9 +24,9 @@
    Данные проверяются методом `getStateInstance` (инстанс должен быть в состоянии `authorized`).
 2. Создание нового чата по номеру телефона получателя.
 3. Отправка текстового сообщения — метод
-   [SendMessage](https://green-api.com/telegram/docs/api/sending/SendMessage/).
+   [SendMessage](https://green-api.com/v3/docs/api/sending/SendMessage/).
 4. Получение входящих сообщений — технология
-   [HTTP API](https://green-api.com/telegram/docs/api/receiving/technology-http-api/):
+   [HTTP API](https://green-api.com/v3/docs/api/receiving/technology-http-api/):
    цикл `ReceiveNotification` (long polling, `receiveTimeout=5`) → обработка → `DeleteNotification`.
 5. Отображение ответов собеседника в чате. Также показываются сообщения, отправленные вами
    с телефона (`outgoingMessageReceived`).
@@ -45,8 +51,8 @@ npm run dev
 
 ## Подготовка инстанса GREEN-API
 
-1. Зарегистрируйтесь в [консоли GREEN-API](https://console.green-api.com) и создайте инстанс
-   для Telegram, авторизуйте его.
+1. Зарегистрируйтесь в [консоли GREEN-API](https://console.green-api.com), создайте инстанс
+   (MAX, Telegram или WhatsApp) и авторизуйте его.
 2. В настройках инстанса:
    - поле **URL для получения уведомлений (webhookUrl) оставьте пустым** — иначе уведомления
      уйдут на webhook и не попадут в очередь HTTP API;
@@ -63,8 +69,8 @@ npm run dev
 3. Напишите сообщение и нажмите Enter (Shift+Enter — перенос строки).
 4. Ответ получателя появится в чате в течение нескольких секунд.
 
-> В Telegram чат, созданный по номеру (`79991234567@c.us`), после первого сообщения может
-> получить числовой chatId. Приложение сопоставляет его по `idMessage` отправленного
+> Чат, созданный по номеру (`79991234567@c.us`), после первого сообщения может
+> получить числовой chatId (так ведёт себя, например, Telegram). Приложение сопоставляет его по `idMessage` отправленного
 > сообщения и объединяет переписку в один чат.
 
 ## Структура
@@ -76,17 +82,21 @@ src/
   store.ts                   reducer состояния чатов и сообщений
   components/
     LoginForm.tsx            форма входа
+    NavRail.tsx              левая панель навигации
     Messenger.tsx            экран мессенджера: состояние, отправка, обработка уведомлений
     Sidebar.tsx              список чатов и создание чата по номеру
     ChatWindow.tsx           окно переписки
     MessageBubble.tsx        сообщение
     MessageInput.tsx         поле ввода
     Avatar.tsx               аватар с инициалами
+    icons.tsx                SVG-иконки
   utils/                     номера телефонов, разбор уведомлений, localStorage, время
   demo.ts                    данные для демо-режима (?demo=1)
 ```
 
 CSS организован по методологии BEM (`block__element--modifier`), стили — в `src/index.css`.
+Цвета, скругления, размеры панелей и шрифтовая шкала вынесены в CSS-переменные и соответствуют
+светлой теме web.max.ru. Логотип и фоновый узор — собственные, бренд MAX не используется.
 
 Стек: React 19, TypeScript, Vite. Внешних зависимостей, кроме React, нет.
 Учётные данные и история чатов хранятся только в `localStorage` браузера; кнопка выхода их удаляет.
