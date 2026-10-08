@@ -4,9 +4,9 @@
 [GREEN-API](https://green-api.com/telegram/). Интерфейс сделан по образцу
 [Telegram Web](https://web.telegram.org/).
 
-- **Демо:** https://__GH_USER__.github.io/green-api-telegram-chat/
+- **Демо:** https://Alexandr4e.github.io/green-api-telegram-chat/
 - **Демо-режим без учётных данных** (фиктивная переписка для просмотра интерфейса):
-  https://__GH_USER__.github.io/green-api-telegram-chat/?demo=1
+  https://Alexandr4e.github.io/green-api-telegram-chat/?demo=1
 
 | Вход | Чат | Мобильная версия |
 |---|---|---|
@@ -33,7 +33,7 @@
 Требуется Node.js 20+.
 
 ```bash
-git clone https://github.com/__GH_USER__/green-api-telegram-chat.git
+git clone https://github.com/Alexandr4e/green-api-telegram-chat.git
 cd green-api-telegram-chat
 npm install
 npm run dev
