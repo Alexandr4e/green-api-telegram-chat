@@ -67,7 +67,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
         </p>
 
         <label className="login__field">
-          <span className="login__label">idInstance</span>
+          <span className="login__label">id Instance</span>
           <input
             className="login__input"
             value={idInstance}
@@ -77,7 +77,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
           />
         </label>
         <label className="login__field">
-          <span className="login__label">apiTokenInstance</span>
+          <span className="login__label">API Token Instance</span>
           <input
             className="login__input"
             type="password"
