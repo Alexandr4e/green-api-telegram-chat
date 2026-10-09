@@ -87,10 +87,13 @@ export function LoginForm({ onLogin }: LoginFormProps) {
             autoComplete="off"
           />
         </label>
-        <label className="login__field">
-          <span className="login__label">apiUrl</span>
-          <input className="login__input" type="url" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} />
-        </label>
+        <details className="login__advanced">
+          <summary className="login__advanced-toggle">Дополнительно</summary>
+          <label className="login__field">
+            <span className="login__label">apiUrl — адрес API из консоли, если отличается</span>
+            <input className="login__input" type="url" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} />
+          </label>
+        </details>
 
         {error && (
           <div className="login__error" role="alert">

@@ -161,6 +161,21 @@ textarea {
   border-color: var(--color-accent);
 }
 
+.login__advanced {
+  text-align: left;
+}
+
+.login__advanced-toggle {
+  padding: 4px;
+  font: var(--font-description);
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.login__advanced[open] .login__advanced-toggle {
+  margin-bottom: 8px;
+}
+
 .login__error {
   padding: 8px 12px;
   border-radius: var(--radius-m);
@@ -225,7 +240,7 @@ textarea {
   color: var(--color-icon-secondary);
 }
 
-.nav-rail__item:hover {
+.nav-rail__item--action:hover {
   background: var(--color-bg-tertiary);
 }
 

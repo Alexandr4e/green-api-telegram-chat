@@ -10,9 +10,9 @@
 > для всех мессенджеров, поэтому код не привязан к Telegram: для работы с инстансом MAX
 > достаточно указать его `idInstance`, `apiTokenInstance` и `apiUrl`.
 
-- **Демо:** https://Alexandr4e.github.io/green-api-telegram-chat/
+- **Демо:** https://Alexandr4e.github.io/green-api-chat/
 - **Демо-режим без учётных данных** (фиктивная переписка для просмотра интерфейса):
-  https://Alexandr4e.github.io/green-api-telegram-chat/?demo=1
+  https://Alexandr4e.github.io/green-api-chat/?demo=1
 
 | Вход | Чат | Мобильная версия |
 |---|---|---|
@@ -36,11 +36,11 @@
 
 ## Локальный запуск
 
-Требуется Node.js 20+.
+Требуется Node.js 20.19+ или 22.12+ (требование Vite 8).
 
 ```bash
-git clone https://github.com/Alexandr4e/green-api-telegram-chat.git
-cd green-api-telegram-chat
+git clone https://github.com/Alexandr4e/green-api-chat.git
+cd green-api-chat
 npm install
 npm run dev
 ```
@@ -58,8 +58,8 @@ npm run dev
      уйдут на webhook и не попадут в очередь HTTP API;
    - включите получение входящих уведомлений о сообщениях (`incomingWebhook`), при желании —
      уведомления об исходящих (`outgoingWebhook`, `outgoingAPIMessageWebhook`).
-3. Скопируйте `idInstance` и `apiTokenInstance`. Поле `apiUrl` по умолчанию
-   `https://api.green-api.com`; если в консоли у инстанса указан другой API URL — подставьте его.
+3. Скопируйте `idInstance` и `apiTokenInstance`. Адрес API по умолчанию — `https://api.green-api.com`;
+   если в консоли у инстанса указан другой API URL, введите его на форме входа в блоке «Дополнительно».
 
 ## Как пользоваться
 
@@ -90,7 +90,7 @@ src/
     MessageInput.tsx         поле ввода
     Avatar.tsx               аватар с инициалами
     icons.tsx                SVG-иконки
-  utils/                     номера телефонов, разбор уведомлений, localStorage, время
+  utils/                     номера телефонов, разбор уведомлений, sessionStorage, время
   demo.ts                    данные для демо-режима (?demo=1)
 ```
 
@@ -99,5 +99,6 @@ CSS организован по методологии BEM (`block__element--mod
 светлой теме web.max.ru. Логотип и фоновый узор — собственные, бренд MAX не используется.
 
 Стек: React 19, TypeScript, Vite. Внешних зависимостей, кроме React, нет.
-Учётные данные и история чатов хранятся только в `localStorage` браузера; кнопка выхода их удаляет.
+Учётные данные и история чатов хранятся только в `sessionStorage` браузера: они сохраняются при
+перезагрузке страницы и удаляются при закрытии вкладки или нажатии «Выйти».
 Деплой на GitHub Pages — GitHub Actions (`.github/workflows/deploy.yml`).

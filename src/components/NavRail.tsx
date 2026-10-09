@@ -8,11 +8,11 @@ interface NavRailProps {
 export function NavRail({ onLogout }: NavRailProps) {
   return (
     <nav className="nav-rail" aria-label="Основная навигация">
-      <button type="button" className="nav-rail__item nav-rail__item--active" aria-current="page">
+      <div className="nav-rail__item nav-rail__item--active" aria-current="page">
         <ChatsIcon className="nav-rail__icon" />
         <span className="nav-rail__label">Чаты</span>
-      </button>
-      <button type="button" className="nav-rail__item nav-rail__item--bottom" onClick={onLogout}>
+      </div>
+      <button type="button" className="nav-rail__item nav-rail__item--action nav-rail__item--bottom" onClick={onLogout}>
         <LogoutIcon className="nav-rail__icon" />
         <span className="nav-rail__label">Выйти</span>
       </button>

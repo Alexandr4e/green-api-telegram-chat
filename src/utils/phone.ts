@@ -24,7 +24,3 @@ export function formatChatId(chatId: string): string {
   }
   return `+${d}`
 }
-
-export function phoneFromChatId(chatId: string): string | undefined {
-  return chatId.match(/^(\d+)@c\.us$/)?.[1]
-}
