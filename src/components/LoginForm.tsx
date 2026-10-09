@@ -66,6 +66,21 @@ export function LoginForm({ onLogin }: LoginFormProps) {
           </a>
         </p>
 
+        <details className="login__disclosure">
+          <summary className="login__disclosure-toggle">Где найти данные инстанса?</summary>
+          <ol className="login__steps">
+            <li className="login__step">
+              Войдите в{' '}
+              <a className="login__link" href="https://console.green-api.com" target="_blank" rel="noreferrer">
+                консоль GREEN-API
+              </a>
+              .
+            </li>
+            <li className="login__step">Откройте инстанс — он должен быть авторизован в мессенджере.</li>
+            <li className="login__step">Скопируйте idInstance и apiTokenInstance со страницы инстанса.</li>
+          </ol>
+        </details>
+
         <label className="login__field">
           <span className="login__label">id Instance</span>
           <input
@@ -87,8 +102,8 @@ export function LoginForm({ onLogin }: LoginFormProps) {
             autoComplete="off"
           />
         </label>
-        <details className="login__advanced">
-          <summary className="login__advanced-toggle">Дополнительно</summary>
+        <details className="login__disclosure">
+          <summary className="login__disclosure-toggle">Дополнительно</summary>
           <label className="login__field">
             <span className="login__label">apiUrl — адрес API из консоли, если отличается</span>
             <input className="login__input" type="url" value={apiUrl} onChange={(e) => setApiUrl(e.target.value)} />
@@ -103,6 +118,13 @@ export function LoginForm({ onLogin }: LoginFormProps) {
         <button type="submit" className="login__button" disabled={loading}>
           {loading ? 'Проверяем…' : 'Войти'}
         </button>
+
+        <p className="login__powered">
+          Работает на{' '}
+          <a className="login__link" href="https://green-api.com" target="_blank" rel="noreferrer">
+            GREEN-API
+          </a>
+        </p>
       </form>
     </div>
   )
